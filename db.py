@@ -27,7 +27,7 @@ class DB:
     
     def add_account(self, phone_number, session_string, password=""):
         if not self.check_exist(phone_number):
-            self.c.execute("INSERT INTO VALUES (?,?,?)", [phone_number, session_string, password])
+            self.c.execute("INSERT INTO accounts VALUES (?,?,?)", [phone_number, session_string, password])
             self.con.commit()
             return True
         else:

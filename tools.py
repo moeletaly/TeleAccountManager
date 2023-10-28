@@ -1,4 +1,5 @@
 from pyrogram import Client, errors
+from pyrogram.errors import BadRequest, Unauthorized, FloodWait, SessionPasswordNeeded
 from db import DB
 from datetime import datetime
 import asyncio
@@ -9,9 +10,9 @@ db = DB()
 
 def log(error):
     time = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
-    err = {"error": error, "time": time}
+    err = {"error": str(error), "time": time}
     with open("errors.txt", "a+") as file:
-        file.write(json.dumps(err, indent=4))
+        file.write(json.dumps(err, indent=4) + "\n")
         file.close()
 
 
@@ -20,13 +21,13 @@ async def binput(text):
     return await loop.run_in_executor(None, input, text)
 
 
-async def add_account():
+async def create_account():
     creds = json.load(open("config.json", "r"))
     password=""
     print(f"{r}Type phone number with +\nExample: +2018421981{w}")
     phone_number = await binput(g)
     if not db.check_exist(phone_number):
-        app = Client(phone_number, creds["api_id"], creds["api_hash"])
+        app = Client(phone_number, creds["api_id"], creds["api_hash"], device_model="AccountManager")
         try:
             await app.connect()
             sent_code = await app.send_code(phone_number)
