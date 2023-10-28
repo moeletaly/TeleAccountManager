@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+from db import DB
 import json
 
 creds = json.load(open("config.json", "r"))
@@ -9,6 +10,7 @@ commands = {
     "click_button": "used to click on a button in a message from a bot\nexample1: /click_button @exampleBot 0 | this will get the last message from a bot and click the first button on the message\nexample2: /click_button @exampleBot Joined✅ | this will get the last message from the bot, and will search the entire conversation for a button with the text Joined✅ and click it",
     "join_chats": "used to join single/multiple chats\nexample: /join_chats @chat1,@chat2,https://t.me/+Sjwwq62 | this will join @chat1, @chat2 and https://t.me/+Sjwwq62 private chat"
 }
+db = DB()
 
 @user.on_message(filters.me)
 async def main_handler(user, m):
