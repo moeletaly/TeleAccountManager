@@ -1,5 +1,5 @@
 # TeleAccountManager
-![Static Badge](https://img.shields.io/badge/Python-green?logo=Python) ![Static Badge](https://img.shields.io/badge/pyrogram-red)
+![Static Badge](https://img.shields.io/badge/Python-green?logo=Python) ![Static Badge](https://img.shields.io/badge/pyrogram-red) ![Static Badge](https://img.shields.io/badge/telegram-tool-blue?logo=telegram)
 
 
 #### TeleAccountManager is a basic tool built
