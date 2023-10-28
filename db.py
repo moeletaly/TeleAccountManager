@@ -40,4 +40,12 @@ class DB:
             return True
         else:
             return False
+    
+    def get_accounts(self):
+        accs = {}
+        self.c.execute('SELECT phone_number,session_string FROM accounts')
+        accounts = self.c.fetchall()
+        for account in accounts:
+            accs[account[0]] = account[1]
+        return accs
 

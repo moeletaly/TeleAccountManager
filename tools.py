@@ -91,3 +91,103 @@ async def create_account():
             print(f"{r}Phone number Invalid{w}")
     else:
     	print(f"{r}Account Already In DB!{w}")
+
+async def refresh():
+    accs = db.get_accounts()
+    n=0
+    m=0
+    for acc in accs.keys():
+        app = Client("user", session_string=accs[acc])
+        try:
+            await app.connect()
+            await app.send_message("me", "Ping")
+            await app.disconnect()
+        except errors.AuthKeyUnregeisterd:
+            db.delete_account(acc)
+            n+=1
+        except errors.SessionRevoked:
+            db.delete_account(acc)
+            n+=1
+        except errors.UserDeactivated:
+            db.delete_account(acc)
+            m+=1
+        except errors.UserDeactivatedBan:
+            db.delete_account(acc)
+            m+=1
+    if m+n > 0:
+        print(f"{r}Deleted {n+m} ACCOUNTS🛑{w}")
+        print(f"{r}SignOut: {n}\nBanned: {m}{w}")
+
+async def basic_animation(message):
+    new_message = await message.reply("Refreshing")
+    n = 0
+    for i in range(12):
+        n+=1
+        if n == 4:
+            n = 1
+        await new_message.edit_text(f"Refreshing{n*'.'}")
+
+async def send_message(username, text):
+    accs = db.get_accounts()
+    s = 0
+    for acc in accs.keys():
+        app = Client("user", session_string=accs[acc])
+        await app.connect()
+        try:
+            await app.send_message(username, text)
+            s+=1
+        except:
+            pass
+        await app.disconnect()
+    return s
+
+async def send_contact(username, contact):
+    accs = db.get_accounts()
+    s = 0
+    for acc in accs.keys():
+        app = Client("user", session_string=accs[acc])
+        await app.connect()
+        try:
+            l = []
+            if contact.lower().strip() == "me":
+                app.me = await app.get_me()
+                l = [app.me.phone_number, app.me.first_name]
+            else:
+                l = contact.split("-")
+            await app.send_contact(username, phone_number=l[0], first_name=l[1])
+                
+        except:
+            pass
+        await app.disconnect()
+    return s
+
+def process_chat_links(chats):
+    result = []
+    for chat in chats:
+        if chat.startswith("@"):
+            result.append(chat[1:])
+        elif chat.startswith("https://t.me/"):
+            user = chat[13:]
+            if user.startswith("+"):
+                result.append(chat)
+            else:
+                result.append(user)
+        else:
+            result.append(chat)
+    return result
+
+async def join_chats(chats):
+    links = process_chat_links(chats)
+    accs = db.get_accounts()
+    s = 0
+    for acc in accs.keys():
+        app = Client("user", session_string=accs[acc])
+        await app.connect()
+        try:
+            for chat in links:
+                await app.join_chat(chat)
+            s+=1
+        except:
+            pass
+        await app.disconnect()
+    return s
