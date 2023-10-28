@@ -13,3 +13,21 @@ using MtProto server's**
 #### USA
 #### Indonesia
 #### south sudan
+
+# How To Use
+* ### first we need to open the config.json file, that will look like this
+```
+{
+    "api_id": 123,
+    "api_hash": "abc"
+}
+```
+### you will need to replace api_id/api_hash with your credentials, you can get them from [Telegram Org](https://my.telegram.org/auth)
+
+* ## In Terminal:
+1.>git clone https://github.com/PythonNoob999/TeleAccountManager.git
+1.>cd TeleAccountManager
+1.>pip install -r requirements.txt
+1.>python main.py
+
+### After you run ```python main.py``` you will need to authorize your MAIN account to control all of your other accounts
