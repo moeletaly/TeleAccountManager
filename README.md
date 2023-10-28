@@ -1,5 +1,5 @@
 # TeleAccountManager
-![Static Badge](https://img.shields.io/badge/Python-green?logo=Python) ![Static Badge](https://img.shields.io/badge/pyrogram-red?logo=data:image/png;base64,9RBCACrAJgFaBU3l15/f9EtgQhAiaU1W/+UZEAx2psAn4DUaMB+PEfy/d7fk9UKICRd1f+8acimSAIgiAIgiAIgiAIgiAIgiAIgiAIgiAI2eP/ARFWxB/o9+WHAAAAAElFTkSuQmCC')
+![Static Badge](https://img.shields.io/badge/Python-green?logo=Python) ![Static Badge](https://img.shields.io/badge/pyrogram-red?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAADgCAMAAAAt85rTAAABWVBMVEX///+/Qx3vjh3tpzjoWCP8/Pz5+fm1Pxv19fX29va6QRy/QhzjViK0Pxvqixzx8fHp6enl5eXZUSDhhhu/QBfghBrtpTHe4ODXTiDrozXghx3vjBe+NQDwkR3)
 
 
 #### TeleAccountManager is a basic tool built
