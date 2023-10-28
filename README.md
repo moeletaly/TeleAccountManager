@@ -25,9 +25,20 @@ using MtProto server's**
 ### you will need to replace api_id/api_hash with your credentials, you can get them from [Telegram Org](https://my.telegram.org/auth)
 
 * ## In Terminal:
-1. git clone https://github.com/PythonNoob999/TeleAccountManager.git
-1. cd TeleAccountManager
-1. pip install -r requirements.txt
-1. python main.py
+1.> git clone https://github.com/PythonNoob999/TeleAccountManager.git
+1.> cd TeleAccountManager
+1.> pip install -r requirements.txt
+1. > python main.py
 
-### After you run ```python main.py``` you will need to authorize your MAIN account to control all of your other accounts
+### After you run ```python main.py``` you will need to authorize your MAIN account to control all of your other accounts, to add other accounts run this command ```python add_account.py```
+
+* ## In Your Main Telegram Account
+### Now you are ready to type commands to control your accounts, Example:
+```/{command} {arg1} {arg2}....```
+
+* ## Available Commands
+1. ### /send_message {target_username} {message_to_be_sent}
+    #### Example:
+    > /send_message @ahmed How are you doing
+
+
