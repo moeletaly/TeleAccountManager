@@ -41,4 +41,21 @@ using MtProto server's**
     #### Example:
     > /send_message @ahmed How are you doing
 
+1. ### /send_contact {target_username} {contact-info}
+    #### Custom contact example:
+    > /send_contact @ahmed +2042181327-Kareem
+
+    #### Account Contact example:
+    > /send_contact @ahmed me
+
+1. ### /join_chats {chats}
+    #### example:
+    > /join_chats @chat1|chat2|https://t.me/+XYZ
+
+
+* ## TODO
+  * 1. #### Add Feature to click on a message button
+  * 1. #### Add feature to Set amount of accounts used
+
+
 
