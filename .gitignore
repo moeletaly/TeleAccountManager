@@ -1,3 +1,4 @@
+mconfig.json
 *.session
 accounts.sqlite3
 *.txt
