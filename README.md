@@ -54,8 +54,8 @@ using MtProto server's**
 
 
 * ## TODO
-  * [] Add Feature to click on a message button
-  * [] Add feature to Set amount of accounts used
+  * [ ] Add Feature to click on a message button
+  * [ ] Add feature to Set amount of accounts used
 
 
 
