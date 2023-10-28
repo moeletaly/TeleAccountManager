@@ -13,6 +13,6 @@ Some New Telegram Accounts get banned instantly
 using MtProto server's**
 
 ## Countrys to avoid
-### USA
-### Indonesia
-### south sudan
+#### USA
+#### Indonesia
+#### south sudan
