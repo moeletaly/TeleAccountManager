@@ -1,4 +1,5 @@
 # TeleAccountManager
+![Static Badge](https://img.shields.io/badge/Python-green?logo=Python)
 
 TeleAccountManager is a basic tool built
 with Pyrogram to easily control multiple
