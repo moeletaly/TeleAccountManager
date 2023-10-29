@@ -52,6 +52,9 @@ using MtProto server's**
     #### example:
     > /join_chats 5 @chat1|chat2|https://t.me/+XYZ
 
+1. ### /ref {number_of_accounts} {ref_link}
+    #### example:
+    > /ref 12 https://t.me/TestBot?start=93223221
 
 * ## TODO
   * [ ] Add Feature to click on a message button
