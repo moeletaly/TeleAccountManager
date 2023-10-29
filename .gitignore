@@ -1,5 +1,4 @@
 mconfig.json
 *.session
 accounts.sqlite3
-*.txt
 __pycache__
