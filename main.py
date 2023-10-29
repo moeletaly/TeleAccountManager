@@ -4,7 +4,7 @@ from tools import *
 import asyncio
 import json
 
-creds = json.load(open("mconfig.json", "r"))
+creds = json.load(open("config.json", "r"))
 user = Client("MainAccount", creds["api_id"], creds["api_hash"])
 commands = {
     "send_message": "used to send a message to some user/bot, example: /send_message @example hello👋, how are you doing",
