@@ -127,39 +127,60 @@ async def basic_animation(message):
             n = 1
         await new_message.edit_text(f"Refreshing{n*'.'}")
 
-async def send_message(username, text):
+async def send_message(max, username, text):
     accs = db.get_accounts()
     s = 0
+    f = 0
+    n = 0
+    if max == "max":
+        max = float("inf")
+    else:
+        max = int(max)
     for acc in accs.keys():
-        app = Client("user", session_string=accs[acc])
-        await app.connect()
-        try:
-            await app.send_message(username, text)
-            s+=1
-        except:
-            pass
-        await app.disconnect()
-    return s
+        if n <= max:
+            app = Client("user", session_string=accs[acc])
+            await app.connect()
+            try:
+                await app.send_message(username, text)
+                s+=1
+            except:
+                f += 1
+                pass
+            await app.disconnect()
+            n+=1
+        else:
+            break
+    return [f, s, n]
 
-async def send_contact(username, contact):
+async def send_contact(max, username, contact):
     accs = db.get_accounts()
     s = 0
+    f = 0
+    n = 0
+    if max == "max":
+        max = float("inf")
+    else:
+        max = int(max)
     for acc in accs.keys():
-        app = Client("user", session_string=accs[acc])
-        await app.connect()
-        try:
-            l = []
-            if contact.lower().strip() == "me":
-                app.me = await app.get_me()
-                l = [app.me.phone_number, app.me.first_name]
-            else:
-                l = contact.split("-")
-            await app.send_contact(username, phone_number=l[0], first_name=l[1])
-                
-        except:
-            pass
-        await app.disconnect()
-    return s
+        if n <= max:
+            app = Client("user", session_string=accs[acc])
+            await app.connect()
+            try:
+                l = []
+                if contact.lower().strip() == "me":
+                    app.me = await app.get_me()
+                    l = [app.me.phone_number, app.me.first_name]
+                else:
+                    l = contact.split("-")
+                await app.send_contact(username, phone_number=l[0], first_name=l[1])
+                    
+            except:
+                f +=1
+            await app.disconnect()
+            n+=1
+        else:
+            break
+    return [f, s, n]
 
 def process_chat_links(chats):
     result = []
@@ -176,18 +197,29 @@ def process_chat_links(chats):
             result.append(chat)
     return result
 
-async def join_chats(chats):
+async def join_chats(max, chats):
     links = process_chat_links(chats)
     accs = db.get_accounts()
     s = 0
+    f = 0
+    ftg = 0
+    n = 0
+    if max == "max":
+        max = float("inf")
+    else:
+        max = int(max)
     for acc in accs.keys():
-        app = Client("user", session_string=accs[acc])
-        await app.connect()
-        try:
-            for chat in links:
-                await app.join_chat(chat)
-            s+=1
-        except:
-            pass
-        await app.disconnect()
-    return s
+        if n < max:
+            app = Client("user", session_string=accs[acc])
+            await app.connect()
+            try:
+                for chat in links:
+                    await app.join_chat(chat)
+                s+=1
+            except errors.UserAlreadyParticipant:
+                ftg += 1
+            except:
+                f += 1
+            await app.disconnect()
+            n+=1
+    return [f, s, n, ftg]

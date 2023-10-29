@@ -4,7 +4,7 @@ from tools import *
 import asyncio
 import json
 
-creds = json.load(open("config.json", "r"))
+creds = json.load(open("mconfig.json", "r"))
 user = Client("MainAccount", creds["api_id"], creds["api_hash"])
 commands = {
     "send_message": "used to send a message to some user/bot, example: /send_message @example hello👋, how are you doing",
@@ -28,36 +28,39 @@ async def main_handler(user, m):
     
     elif com == "/send_message":
         try:
-            username = text[1]
-            txt = m.text[13+len(username)+2:]#.replace(text[0], "").replace(text[1], "")
+            num = text[1]
+            username = text[2]
+            txt = m.text[13+len(username)+len(num)+2:]#.replace(text[0], "").replace(text[1], "")
             asyncio.create_task(basic_animation(m))
             await refresh()
-            task = asyncio.create_task(send_message(username, txt))
+            task = asyncio.create_task(send_message(num, username, txt))
             await task
-            await m.reply(f"Done {task.result()}✅")
+            await m.reply(f"Done {task.result()[1]}/{task.result()[2]}✅")
         except IndexError:
             await m.reply("No Enough Arguments!")
     
     elif com == "/send_contact":
         try:
-            username = text[1]
-            contact_info = text[2]
+            num = text[1]
+            username = text[2]
+            contact_info = text[3]
             asyncio.create_task(basic_animation(m))
             await refresh()
-            task = asyncio.create_task(send_contact(username, contact_info))
+            task = asyncio.create_task(send_contact(num, username, contact_info))
             await task
-            await m.reply(f"Done {task.result()}✅")
+            await m.reply(f"Done {task.result()[1]}/{task.result()[2]}✅")
         except IndexError:
             await m.reply("No Enough Arguments!")
     
     elif com == "/join_chats":
         try:
-            chats = text[1].split("|")
+            num = text[1]
+            chats = text[2].split("|")
             asyncio.create_task(basic_animation(m))
             await refresh()
-            task = asyncio.create_task(join_chats(chats))
+            task = asyncio.create_task(join_chats(num, chats))
             await task
-            await m.reply(f"Done {task.result()}✅")
+            await m.reply(f"Done ✅, Results:\njoined: {task.result()[1]}\nfailed to join: {task.result()[0]}\nAlready joined: {task.result()[3]}")
         except IndexError:
             await m.reply("No Enough Arguments!")
 
