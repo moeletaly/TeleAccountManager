@@ -37,20 +37,20 @@ using MtProto server's**
 ```/{command} {arg1} {arg2}....```
 
 * ## Available Commands
-1. ### /send_message {target_username} {message_to_be_sent}
+1. ### /send_message {number_of_accounts} {target_username} {message_to_be_sent}
     #### Example:
-    > /send_message @ahmed How are you doing
+    > /send_message 5 @ahmed How are you doing
 
-1. ### /send_contact {target_username} {contact-info}
+1. ### /send_contact {number_of_accounts} {target_username} {contact-info}
     #### Custom contact example:
-    > /send_contact @ahmed +2042181327-Kareem
+    > /send_contact 5 @ahmed +2042181327-Kareem
 
     #### Account Contact example:
-    > /send_contact @ahmed me
+    > /send_contact 5 @ahmed me
 
-1. ### /join_chats {chats}
+1. ### /join_chats {number_of_accounts} {chats}
     #### example:
-    > /join_chats @chat1|chat2|https://t.me/+XYZ
+    > /join_chats 5 @chat1|chat2|https://t.me/+XYZ
 
 
 * ## TODO
