@@ -1,0 +1,10 @@
+{
+    "error": "name 'BadRequest' is not defined",
+    "time": "2023/10/28 08:57:21"
+}{
+    "error": "name 'SessionPasswordNeeded' is not defined",
+    "time": "2023/10/28 08:58:53"
+}{
+    "error": "near \"VALUES\": syntax error",
+    "time": "2023/10/28 09:03:01"
+}
