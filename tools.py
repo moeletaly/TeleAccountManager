@@ -223,3 +223,35 @@ async def join_chats(max, chats):
             await app.disconnect()
             n+=1
     return [f, s, n, ftg]
+
+def process_invite_link(link):
+    link = link.replace("https://t.me/", "")
+    bot_user = link[:link.index("?")]
+    command, ref_code = link[link.index("?")+1:].split("=")
+    return [bot_user,f"/{command} {ref_code}"]
+
+async def send_refs(max, invite_link):
+    accs = db.get_accounts()
+    s = 0
+    f = 0
+    n = 0
+    ref = process_invite_link(invite_link)
+    if max == "max":
+        max = float("inf")
+    else:
+        max = int(max)
+    for acc in accs.keys():
+        if n <= max:
+            app = Client("user", session_string=accs[acc])
+            await app.connect()        
+            try:
+                await app.send_message(ref[0], ref[1])
+                s+=1
+            except:
+                f+=1
+            await app.disconnect()
+            n+=1
+        else:
+            break
+    return [f, s, n]
+            
